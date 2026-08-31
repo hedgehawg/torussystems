@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Torus Systems</title>
+<meta name="description" content="Torus Systems is an institutional market-maker for prediction markets. New York.">
+<meta property="og:title" content="Torus Systems">
+<meta property="og:description" content="Institutional market-making for prediction markets. New York.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23101820'/%3E%3Cellipse cx='50' cy='54' rx='40' ry='23' fill='none' stroke='%23eef1f5' stroke-width='6'/%3E%3Cellipse cx='50' cy='45' rx='15.5' ry='7.5' fill='none' stroke='%23eef1f5' stroke-width='6'/%3E%3C/svg%3E">
+<style>
+  @font-face {
+    font-family: 'EB Garamond';
+    src: url('ebgaramond-400.woff2') format('woff2');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  :root {
+    --bg: #101820;
+    --bg-2: #161d26;
+    --line: rgba(255,255,255,.12);
+    --text: #f4f1ea;
+    --dim: rgba(244,241,234,.68);
+    --gold: #c4a35a;
+    --serif: 'EB Garamond', Garamond, Georgia, serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { border-bottom: 1px solid var(--gold); }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 28px; }
+
+  header {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(16,24,32,.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    min-height: 64px; gap: 20px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 12px;
+    color: var(--text); letter-spacing: .18em; text-transform: uppercase;
+    font-size: 13px; border: 0;
+  }
+  .brand:hover { border: 0; }
+  .brand img { width: 32px; height: 32px; display: block; }
+  nav ul { display: flex; flex-wrap: wrap; gap: 8px 22px; list-style: none; justify-content: flex-end; }
+  nav ul a {
+    color: var(--dim); font-size: 12px; letter-spacing: .14em;
+    text-transform: uppercase; border: 0;
+  }
+  nav ul a:hover { color: var(--text); border: 0; }
+
+  .hero { padding: 108px 0 88px; text-align: center; }
+  .hero img.mark { width: 160px; height: 160px; margin: 0 auto 22px; display: block; }
+  .hero h1 {
+    font-size: clamp(28px, 5.2vw, 46px);
+    font-weight: 400; letter-spacing: .34em; text-indent: .34em;
+    text-transform: uppercase;
+  }
+  .hero p { max-width: none; }
+  .hero-city {
+    font-style: italic; font-size: clamp(15px, 1.9vw, 19px);
+    color: var(--dim); margin-top: 12px; letter-spacing: .04em;
+  }
+  .rule { width: 64px; height: 1px; background: rgba(255,255,255,.55); margin: 28px auto; }
+  .hero .lede {
+    font-size: clamp(15px, 1.9vw, 18px);
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--dim);
+  }
+  .hero .lede .city { white-space: nowrap; }
+
+  section { padding: 72px 0; border-top: 1px solid var(--line); }
+  .kicker {
+    font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 14px;
+  }
+  h2 {
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 400; letter-spacing: .02em; margin-bottom: 22px;
+  }
+  p { color: var(--dim); max-width: 720px; margin-bottom: 16px; }
+  p strong { color: var(--text); font-weight: 400; }
+
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+  .card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 26px 24px 28px;
+  }
+  .card h3 {
+    font-size: 20px; font-weight: 400; letter-spacing: .06em;
+    text-transform: uppercase; margin-bottom: 12px; color: var(--text);
+  }
+  .card p { font-size: 17px; margin: 0; }
+
+  figure { margin: 28px 0 0; }
+  figure img, figure video {
+    width: 100%; display: block; border: 1px solid var(--line);
+  }
+  figcaption { font-size: 14px; color: var(--dim); padding-top: 10px; }
+  .deco-scrub { position: relative; }
+  .deco-dial { position: absolute; left: 0; right: 0; top: 80%; bottom: 0; cursor: grab; }
+  .deco-dial:active { cursor: grabbing; }
+  .deco-dial:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+  .study {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 28px;
+    margin-top: 28px;
+  }
+  .founder { display: grid; grid-template-columns: 220px 1fr; gap: 36px; align-items: start; margin-top: 8px; }
+  .portrait { width: 100%; display: block; border: 1px solid var(--line); filter: grayscale(20%); }
+  .study h3 { font-size: 24px; font-weight: 400; margin: 8px 0 14px; color: var(--text); }
+  @media (max-width: 760px) { .founder { grid-template-columns: 1fr; } .portrait { max-width: 220px; } }
+  .tag { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+  .btn {
+    display: inline-block; margin-top: 18px; padding: 10px 16px;
+    border: 1px solid var(--gold); color: var(--gold);
+    letter-spacing: .12em; text-transform: uppercase; font-size: 12px;
+  }
+  .btn:hover { background: var(--gold); color: var(--bg); border-bottom: 1px solid var(--gold); }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 28px 0 36px;
+    text-align: center;
+    font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
+    color: rgba(244,241,234,.45);
+  }
+
+  @media (max-width: 760px) {
+    .cards, .grid-2 { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+    .hero { padding: 80px 0 64px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="#top">
+        <img src="assets/torus-mark.svg" alt="">
+        Torus Systems
+      </a>
+      <ul>
+        <li><a href="#firm">The firm</a></li>
+        <li><a href="#scott">Scott</a></li>
+        <li><a href="#partners">Partners</a></li>
+        <li><a href="#markets">Markets</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#internships">Internships</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <img class="mark" src="assets/torus-mark.svg" alt="">
+      <h1>Torus Systems</h1>
+      <p class="hero-city">New York, NY</p>
+      <div class="rule"></div>
+      <p class="lede">Institutional market-making for prediction markets</p>
+    </div>
+  </div>
+
+  <section id="firm">
+    <div class="wrap">
+      <div class="kicker">01</div>
+      <h2>The firm</h2>
+      <p>Prediction markets are becoming real financial infrastructure, where regulated exchanges price measurable, discrete outcomes. The addressable market is a function of value proposition. A market must create value for market participants. Commodity futures paved the way, and now the only limitations are imagination and practicality.</p>
+      <p>Torus Systems provides the service every market needs: continuous, two-sided liquidity driven by truth-seeking algorithms, operating with live, intelligently processed empirical information.</p>
+      <p>We trade solely the firm's capital. We have no outside investors, and no third-party capital. Our customer is the market. We offer reliable two-sided market making subject to predetermined, market-specific performance benchmarks.</p>
+      <p>As prediction markets scale to become the backbone of global civilization's covariant risk matrix, Torus Systems' mission is to enrich that backbone with rigor and reliability.</p>
+    </div>
+  </section>
+
+  <section id="scott">
+    <div class="wrap">
+      <div class="kicker">02</div>
+      <h2>Scott Coulter</h2>
+      <div class="founder">
+        <img class="portrait" src="assets/scott-coulter.jpg" alt="Scott Coulter">
+        <div>
+          <p>Scott M. Coulter is the founder and managing member of Torus Systems LLC. He is also the founder of Cowbird Capital LP, a New York based long/short equity fund.</p>
+          <p>He received a Bachelor's degree in Applied Mathematics from Harvard College, then a Master's degree in Applied Mathematics from the Harvard Graduate School of Arts and Sciences. Scott joined Blackstone in 2006 where he worked in New York as an analyst in the private equity group. He left Blackstone in 2009 to join Lone Pine Capital where he became a managing director investing across technology, healthcare, and business services. In 2017, Scott was the third Lone Pine partner to receive Lone Pine sponsorship to spin-out and launch Cowbird Capital.</p>
+          <p>After returning outside capital to Cowbird's investors in 2024, Scott served as a Senior Advisor to the Administrator of NASA in 2025. He was later appointed by the White House to be CIO of the Social Security Administration. Scott returned to New York in 2026 to found Torus Systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="partners">
+    <div class="wrap">
+      <div class="kicker">03</div>
+      <h2>Venues</h2>
+      <p>We provide institutional market making to the industry's leading platforms.</p>
+      <div class="cards">
+        <div class="card">
+          <h3>Kalshi</h3>
+          <p>The first CFTC-regulated exchange dedicated to event contracts: elections, economics, weather, and beyond. The U.S. exchange path.</p>
+        </div>
+        <div class="card">
+          <h3>Polymarket</h3>
+          <p>The world's largest prediction market, now open to U.S. institutions.</p>
+        </div>
+        <div class="card">
+          <h3>ForecastEx</h3>
+          <p>The event-contract exchange founded by Interactive Brokers, sitting next to the rest of an institutional book.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="markets">
+    <div class="wrap">
+      <div class="kicker">04</div>
+      <h2>The market</h2>
+      <p>Every enterprise is in the business of risk management, one way or another. The next step for prediction markets is a product with commercial viability. Today, risk management comes at a steep price. Whether it be healthcare premiums, commodity prices, shipping costs, or counterparty risk, businesses pay dearly for certainty, padding the margins of a bloated risk industrial complex (insurance and middle men).</p>
+      <p>Before responsible fiduciaries can access the benefits of market-based risk management via prediction markets, reliable counterparties are an imperative. Prediction markets are at the precipice of filling this void, and reliable market makers are the bridge to confidence. Nearly every industry stands to benefit: insurance, shipping, commodities, consumer retail, healthcare, even frontier AI companies (with their volatile infrastructure demands) — all have an appetite for certainty.</p>
+      <p>That gap is the business. Not a commentary shop. A market-maker already in place when event risk becomes a standard institutional hedge.</p>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="wrap">
+      <div class="kicker">05</div>
+      <h2>Research</h2>
+      <p>Two public studies sit behind the work. The math is the same instinct as the desk: look at the shape of a system, not the story people tell about it.</p>
+
+      <div class="study" id="decoherence">
+        <div class="tag">Topology &middot; Language</div>
+        <h3>Topology of Societal Decoherence</h3>
+        <p><strong>Data suggests the &ldquo;left&rdquo; and the &ldquo;right&rdquo; no longer speak the same language.</strong></p>
+        <p>As social feeds pull left and right toward different words, the two
+        sides slowly stop sharing a language. This is a visualization &mdash; our
+        linguistic feasible space, our respective linguistic universes, are
+        represented as topological manifolds (tori: donuts) &mdash; <a href="https://www.govinfo.gov/app/collection/CREC"
+        target="_blank" rel="noopener"><strong>using data from a
+        consistent platform: the floor of Congress (1981 through
+        2025)</strong></a>. Here you
+        can see that the right and left have separated like a failed emulsion.
+        The mathematical description is a fiber bundle on a torus, decohering.</p>
+        <figure>
+          <div class="deco-scrub">
+            <video src="assets/decoherence-linguistic.mp4" data-fps="10" autoplay loop muted playsinline preload="metadata" aria-label="Animation of the linguistic torus: shared feasible space collapsing from 100 to 5 percent, measured from the Congressional Record, with historical events chronicled into a ledger as they pass"></video>
+            <div class="deco-dial" role="slider" tabindex="0" aria-label="Timeline, 1981 to 2025 — drag to scrub" aria-valuemin="1981" aria-valuemax="2025" aria-valuenow="1981"></div>
+          </div>
+          <figcaption>The shared linguistic feasible space, 1981&ndash;2025 &mdash; measured,
+          not modeled: nearly 870 million words of the Congressional Record
+          (Stanford&rsquo;s hein-daily parse 1981&ndash;93, govinfo CREC from
+          1994), collapsing from 100% to 5%. Each event surfaces beneath the
+          tori as it happens, then files into the ledger at top left &mdash; amber
+          for wars, gray for structural turns. Drag the timeline dial to scrub
+          back and forth; release to resume.</figcaption>
+        </figure>
+        <p>Here&rsquo;s what you&rsquo;re watching: each cloud is one
+        party&rsquo;s footprint in language-space &mdash; shared vocabulary on
+        one axis, emotional register on another, word meaning on the third.
+        Through the 1980s the two clouds interleave on a single surface: one
+        language, weathering the Gulf War and Somalia without a tear. Scrub
+        forward and they separate like oil from water &mdash; the Gingrich
+        snap, then slowly through the 2000s, faster after 2010 &mdash; until
+        what remains is two distinct tori, barely touching, at 5%.</p>
+        <p><strong>The tori genuinely re-cohere
+        slightly in the late 90s</strong>, shudder through
+        2009&ndash;12, tear violently in 2020&ndash;21, and end at &ldquo;Shared
+        Linguistic Feasible Space: 5%&rdquo; &mdash; not the parametric
+        version&rsquo;s clean 0%, because the data says the maximum tear was
+        the Jan-6-era Congress with a slight retreat since. I&rsquo;d argue 5%
+        is a more powerful ending than 0%: measured, not scripted, and quietly
+        hopeful.</p>
+        <p>Then again, <strong>perhaps a torus
+        isn&rsquo;t the right shape</strong> for language
+        at all. Speech isn&rsquo;t inherently circular &mdash; it never owes
+        us a return to where it started. A helix is the more natural form: it
+        lets the data breathe and evolve instead of repeating itself &mdash;
+        arguably a truer picture of a time series. Here it is:</p>
+        <figure>
+          <div class="deco-scrub">
+            <video src="assets/decoherence-helix.mp4" data-fps="10" autoplay loop muted playsinline preload="metadata" aria-label="Animation of the fraying helix: a two-strand braid of congressional language winding tightly through the 1980s and unraveling into two frayed strands by 2025"></video>
+            <div class="deco-dial" role="slider" tabindex="0" aria-label="Timeline, 1981 to 2025 — drag to scrub" aria-valuemin="1981" aria-valuemax="2025" aria-valuenow="1981"></div>
+          </div>
+          <figcaption>The natural progression &mdash; the measured data on an
+          honest topology, extended to 1981&ndash;2025 (Stanford&rsquo;s
+          hein-daily parse of the Record for 1981&ndash;93, govinfo CREC from
+          1994). A torus implies discourse loops back on itself; the
+          Record doesn&rsquo;t. Here the braid&rsquo;s winding rate <em>is</em>
+          the measured shared space: it winds tightly through the Reagan years
+          while a common language holds, re-tightens briefly after 9/11, and
+          unravels as the space collapses
+          &mdash; fibers snapping and drifting through the Tea Party ramp to the
+          frayed divergence of the Jan-6-era Congress. This dial scrubs
+          too.</figcaption>
+        </figure>
+        <p>Notice how long the braid simply holds &mdash; through Reagan, the
+        Gulf War, Somalia, a classifier can barely tell the parties&rsquo;
+        vocabularies apart. The fraying is already underway, though: by 1994
+        the shared space has quietly drifted to about 72%. Then the snap
+        &mdash; the Gingrich Congress, when the Contract-with-America message
+        machine handed each party its own vocabulary almost overnight and the
+        braid jolts loose. It pulls briefly back together at 9/11 &mdash; the
+        last genuine coherence in the record &mdash; then unwinds for twenty
+        straight years, fraying through the Tea Party ramp until the strands
+        of the Jan-6-era Congress barely touch. None of this is scripted: the
+        winding is the measured data, recovering the history on its own.</p>
+        <figure>
+          <img src="assets/decoherence-measured-series.png" alt="Three line charts, 1994 to 2025: lexical partisanship, affective tone, and semantic distance measured from the Congressional Record, annotated with the Gingrich Congress, 9/11, the Tea Party era, and the 117th Congress" loading="lazy">
+          <figcaption>The three measured axes &mdash; lexical partisanship, affective
+          tone, semantic distance &mdash; from 1.06 million floor speeches, single
+          source (govinfo CREC), one Congress per point. The party-split detail
+          covers the CREC era (1994&ndash;2025); the helix&rsquo;s
+          1981&ndash;93 wing comes from the Stanford parse of the earlier
+          Record.</figcaption>
+        </figure>
+        <p><strong>Linguistic decoherence:</strong> because the Z-axis plots
+        1&nbsp;&minus;&nbsp;cosine&nbsp;similarity, it is an exact measure of
+        divergence. When the Z-axis spikes (as seen clearly around the 2010
+        Tea Party era and the post-2020 117th Congress), it reveals that the
+        two sides aren&rsquo;t just using different vocabularies (which is
+        what the X-axis measures). Instead, it shows that even after aligning
+        their baseline languages, they are using the exact same words to mean
+        entirely different things. The topological distance between their
+        shared concepts is widening, indicating that the speakers are
+        effectively talking past each other. For an intuitive explanation of
+        the Z-axis &mdash; disconnected manifolds, the Procrustes rotation, and the
+        angle between meanings &mdash;
+        <a href="https://misterconsistency.com/decoherence-z-axis.html" target="_blank" rel="noopener">read the full breakdown &rarr;</a></p>
+        <figure>
+          <img src="assets/decoherence-stages.png" alt="Six wireframe torus-pair panels, 1981 to 2025, laid side by side: one fused donut in 1981 progressively separating into two distinct donuts by 2025, shared linguistic feasible space declining from 100 to 5 percent" loading="lazy">
+          <figcaption>The six measured stages, laid plainly: 1981&ndash;2025,
+          100% to 5% shared.</figcaption>
+        </figure>
+      </div>
+
+      <div class="study" id="gold">
+        <div class="tag">Markets &middot; Topological Data Analysis</div>
+        <h3>Gold's Rally: A Topological Contextualization</h3>
+        <p>Is gold's price spike a bubble or the real thing? A math tool that measures the <em>shape</em> of how markets move together. The shape looks completely normal, even though the price move was historic. Translation: a genuine, lasting repricing of gold against paper money, not a panic. For the technical reader: persistent homology of cross-asset correlations, 43rd-percentile normal. January 2026, 12 pages.</p>
+        <a class="btn" href="assets/gold-topology-jan-2026.pdf" target="_blank" rel="noopener">Read the study</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="internships">
+    <div class="wrap">
+      <div class="kicker">06</div>
+      <h2>Internships</h2>
+      <p>We are looking for strong builders. People who can write, measure, and ship. Internships and a fast track for the ones who can do the work.</p>
+      <p>If interested in an internship, submit your resume here: <a href="mailto:scott@topdogstudios.com">scott@topdogstudios.com</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">&copy; Torus Systems LLC &middot; New York<br>Torus Systems LLC is a wholly owned subsidiary of Top Dog Studios LLC.</div>
+</footer>
+
+<script>
+/* Decoherence animations — the dial baked into the frames becomes a real
+   scrubber (both mp4s are all-intra; every frame is an instant seek).
+   Thumb geometry measured from the frames: x 139..988 in a 1100px frame,
+   linear across 81 frames. */
+document.querySelectorAll('.deco-scrub').forEach((box) => {
+  const v = box.querySelector('video'), d = box.querySelector('.deco-dial');
+  if (!v || !d) return;
+  const FRAMES = 81, FPS = +(v.dataset.fps || 20), X0 = 139 / 1100, X1 = 988 / 1100;
+  const Y0 = +(d.getAttribute('aria-valuemin') || 1981),
+        Y1 = +(d.getAttribute('aria-valuemax') || 2025);
+  let wasPlaying = false, frame = 0;
+  function setFrame(fr) {
+    frame = Math.min(FRAMES - 1, Math.max(0, fr));
+    v.currentTime = (frame + 0.5) / FPS;
+    d.setAttribute('aria-valuenow', String(Math.round(Y0 + (frame / (FRAMES - 1)) * (Y1 - Y0))));
+  }
+  function seekTo(clientX) {
+    const r = v.getBoundingClientRect();
+    const xn = (clientX - r.left) / r.width;
+    const frac = Math.min(1, Math.max(0, (xn - X0) / (X1 - X0)));
+    setFrame(Math.round(frac * (FRAMES - 1)));
+  }
+  d.addEventListener('pointerdown', (e) => {
+    wasPlaying = !v.paused;
+    v.pause();
+    d.setPointerCapture(e.pointerId);
+    seekTo(e.clientX);
+    e.preventDefault();
+  });
+  d.addEventListener('pointermove', (e) => {
+    if (d.hasPointerCapture && d.hasPointerCapture(e.pointerId)) seekTo(e.clientX);
+  });
+  d.addEventListener('pointerup', (e) => {
+    if (d.hasPointerCapture && d.hasPointerCapture(e.pointerId)) d.releasePointerCapture(e.pointerId);
+    if (wasPlaying) v.play();
+  });
+  d.addEventListener('keydown', (e) => {
+    const step = e.key === 'ArrowLeft' ? -1 : e.key === 'ArrowRight' ? 1 : 0;
+    if (!step) return;
+    v.pause();
+    setFrame(frame + step);
+    e.preventDefault();
+  });
+  v.addEventListener('click', () => {
+    if (v.paused) v.play().catch(() => {});
+    else v.pause();
+  });
+  /* Autoplay can be refused (iOS Low Power Mode etc.) — retry in view. */
+  new IntersectionObserver((entries) => {
+    entries.forEach((en) => { if (en.isIntersecting && v.paused) v.play().catch(() => {}); });
+  }).observe(v);
+});
+</script>
+<script data-goatcounter="https://torussystems.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
