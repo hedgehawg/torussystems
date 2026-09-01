@@ -255,49 +255,47 @@
       <p>Putting a collar on unbounded uncertainty creates the foundation for capital allocation. Publicly traded risk markets enable CFOs to unlock more investable cash than ever before.</p>
       <p>Our goal is to make prediction markets a standard institutional hedge.</p>
       <figure>
-        <svg viewBox="0 0 980 410" style="width:100%;display:block" role="img" aria-label="Two charts, before and after. Both plot outcome against probability. Before: the outcome curve runs to plus and minus infinity at the tails. After: the same curve with the tails capped at an upper and lower bound, leaving a bounded feasible set.">
-          <!-- left panel: unbounded -->
-          <rect x="70" y="28" width="360" height="304" fill="none" stroke="var(--line)"/>
-          <line x1="70" y1="332" x2="430" y2="332" stroke="var(--line)"/>
-          <line x1="70" y1="28" x2="70" y2="332" stroke="var(--line)"/>
-          <text x="82" y="348" font-size="12" fill="var(--dim)">0</text>
-          <text x="414" y="348" font-size="12" fill="var(--dim)">1</text>
-          <text x="250" y="350" font-size="11" letter-spacing="2" text-anchor="middle" fill="var(--dim)">PROBABILITY</text>
-          <text x="52" y="180" font-size="11" letter-spacing="2" text-anchor="middle" fill="var(--dim)" transform="rotate(-90 52 180)">OUTCOME</text>
-          <clipPath id="clipL"><rect x="71" y="29" width="358" height="302"/></clipPath>
-          <g clip-path="url(#clipL)">
-            <path d="M 84,338 C 92,270 118,232 178,208 C 238,184 262,176 322,152 C 382,128 408,92 416,20" fill="none" stroke="var(--text)" stroke-width="2"/>
-          </g>
-          <text x="94" y="322" font-size="15" fill="var(--dim)">&#8722;&#8734;</text>
-          <text x="392" y="48" font-size="15" fill="var(--dim)">+&#8734;</text>
-          <text x="250" y="382" font-size="13" letter-spacing="2" text-anchor="middle" fill="var(--dim)">UNBOUNDED UNCERTAINTY</text>
+        <svg viewBox="0 0 980 410" style="width:100%;display:block" role="img" aria-label="Two charts, before and after. Both plot outcome against probability, with the exposure shaded as the area between the curve and the expected outcome. Before: the curve and its shaded area burst through the top and bottom of the chart frame, running to plus and minus infinity - the area is unbounded. After: the same curve capped at an upper and lower bound, its shaded area sealed inside the frame - the area is bounded.">
+          <!-- left panel: the frame cannot contain the curve or its area -->
+          <path d="M 96,410 C 100,330 120,260 178,206 C 238,180 262,172 322,148 C 368,128 392,86 398,0 L 404,0 L 404,170 L 96,170 Z" fill="var(--gold)" fill-opacity=".13"/>
+          <line x1="70" y1="170" x2="430" y2="170" stroke="var(--dim)" stroke-opacity=".35" stroke-dasharray="3 6"/>
+          <path d="M 96,410 C 100,330 120,260 178,206 C 238,180 262,172 322,148 C 368,128 392,86 398,0" fill="none" stroke="var(--text)" stroke-width="2"/>
+          <rect x="70" y="44" width="360" height="252" fill="none" stroke="var(--line)"/>
+          <text x="76" y="162" font-size="9" letter-spacing="1.5" fill="var(--dim)">EXPECTED</text>
+          <text x="112" y="330" font-size="15" fill="var(--dim)">&#8722;&#8734;</text>
+          <text x="378" y="16" font-size="15" text-anchor="end" fill="var(--dim)">+&#8734;</text>
+          <text x="74" y="316" font-size="12" fill="var(--dim)">0</text>
+          <text x="414" y="316" font-size="12" fill="var(--dim)">1</text>
+          <text x="250" y="318" font-size="11" letter-spacing="2" text-anchor="middle" fill="var(--dim)">PROBABILITY</text>
+          <text x="52" y="170" font-size="11" letter-spacing="2" text-anchor="middle" fill="var(--dim)" transform="rotate(-90 52 170)">OUTCOME</text>
+          <text x="250" y="376" font-size="13" letter-spacing="2" text-anchor="middle" fill="var(--dim)">UNBOUNDED UNCERTAINTY</text>
 
           <!-- arrow -->
-          <line x1="450" y1="180" x2="524" y2="180" stroke="var(--gold)" stroke-width="2"/>
-          <path d="M 524,171 L 540,180 L 524,189 Z" fill="var(--gold)"/>
+          <line x1="450" y1="170" x2="524" y2="170" stroke="var(--gold)" stroke-width="2"/>
+          <path d="M 524,161 L 540,170 L 524,179 Z" fill="var(--gold)"/>
 
-          <!-- right panel: bounded -->
-          <rect x="560" y="28" width="360" height="304" fill="none" stroke="var(--line)"/>
-          <line x1="560" y1="332" x2="920" y2="332" stroke="var(--line)"/>
-          <line x1="560" y1="28" x2="560" y2="332" stroke="var(--line)"/>
-          <text x="572" y="348" font-size="12" fill="var(--dim)">0</text>
-          <text x="904" y="348" font-size="12" fill="var(--dim)">1</text>
-          <text x="740" y="350" font-size="11" letter-spacing="2" text-anchor="middle" fill="var(--dim)">PROBABILITY</text>
-          <clipPath id="clipR"><rect x="561" y="29" width="358" height="302"/></clipPath>
+          <!-- right panel: sealed inside the frame -->
+          <clipPath id="clipR"><rect x="561" y="45" width="358" height="250"/></clipPath>
           <g clip-path="url(#clipR)">
+            <path d="M 562,250 L 612,250 C 620,228 648,208 692,192 C 736,176 752,168 794,150 C 838,132 860,112 868,90 L 918,90 L 918,170 L 562,170 Z" fill="var(--gold)" fill-opacity=".13"/>
+            <line x1="560" y1="170" x2="920" y2="170" stroke="var(--dim)" stroke-opacity=".35" stroke-dasharray="3 6"/>
             <line x1="560" y1="90" x2="920" y2="90" stroke="var(--gold)" stroke-opacity=".45" stroke-dasharray="5 5"/>
-            <line x1="560" y1="270" x2="920" y2="270" stroke="var(--gold)" stroke-opacity=".45" stroke-dasharray="5 5"/>
-            <path d="M 612,270 C 588,294 576,316 572,338" fill="none" stroke="var(--dim)" stroke-opacity=".5" stroke-dasharray="4 5"/>
-            <path d="M 868,90 C 888,68 900,46 906,20" fill="none" stroke="var(--dim)" stroke-opacity=".5" stroke-dasharray="4 5"/>
-            <path d="M 562,270 L 612,270 C 620,246 648,222 692,204 C 736,186 752,178 794,158 C 838,138 860,114 868,90 L 918,90" fill="none" stroke="var(--text)" stroke-width="2"/>
-            <circle cx="612" cy="270" r="4" fill="var(--gold)"/>
+            <line x1="560" y1="250" x2="920" y2="250" stroke="var(--gold)" stroke-opacity=".45" stroke-dasharray="5 5"/>
+            <path d="M 612,250 C 588,272 576,286 572,300" fill="none" stroke="var(--dim)" stroke-opacity=".5" stroke-dasharray="4 5"/>
+            <path d="M 868,90 C 888,68 900,56 906,40" fill="none" stroke="var(--dim)" stroke-opacity=".5" stroke-dasharray="4 5"/>
+            <path d="M 562,250 L 612,250 C 620,228 648,208 692,192 C 736,176 752,168 794,150 C 838,132 860,112 868,90 L 918,90" fill="none" stroke="var(--text)" stroke-width="2"/>
+            <circle cx="612" cy="250" r="4" fill="var(--gold)"/>
             <circle cx="868" cy="90" r="4" fill="var(--gold)"/>
           </g>
+          <rect x="560" y="44" width="360" height="252" fill="none" stroke="var(--line)"/>
           <text x="912" y="82" font-size="10" letter-spacing="1.5" text-anchor="end" fill="var(--gold)">UPPER BOUND</text>
-          <text x="568" y="290" font-size="10" letter-spacing="1.5" fill="var(--gold)">LOWER BOUND</text>
-          <text x="740" y="382" font-size="13" letter-spacing="2" text-anchor="middle" fill="var(--dim)">BOUNDED FEASIBLE SET</text>
+          <text x="568" y="268" font-size="10" letter-spacing="1.5" fill="var(--gold)">LOWER BOUND</text>
+          <text x="572" y="316" font-size="12" fill="var(--dim)">0</text>
+          <text x="904" y="316" font-size="12" fill="var(--dim)">1</text>
+          <text x="740" y="318" font-size="11" letter-spacing="2" text-anchor="middle" fill="var(--dim)">PROBABILITY</text>
+          <text x="740" y="376" font-size="13" letter-spacing="2" text-anchor="middle" fill="var(--dim)">BOUNDED FEASIBLE SET</text>
         </svg>
-        <figcaption>Outcome against probability, before and after. Unhedged, the tails of the outcome curve run to infinity in both directions. Priced risk chops those corners off: the same business, confined to a known floor and ceiling a CFO can plan against.</figcaption>
+        <figcaption>Outcome against probability, before and after. The shaded region is the exposure &mdash; the area between the curve and the expected outcome. Unhedged, the tails run off the chart and that area is unbounded in both directions: no frame can contain it. Priced risk seals the region at a known floor and ceiling &mdash; finite exposure a CFO can plan against.</figcaption>
       </figure>
     </div>
   </section>
