@@ -143,6 +143,10 @@
     font-size: 13px; letter-spacing: .16em; text-transform: uppercase;
   }
   .apply-btn:hover { border: 1px solid var(--gold); background: rgba(196,163,90,.08); }
+  .apply-list { list-style: none; max-width: 720px; margin: 0 0 22px; }
+  .apply-list li { position: relative; padding-left: 26px; color: var(--dim); margin-bottom: 12px; }
+  .apply-list li::before { content: '4'; position: absolute; left: 0; color: var(--gold); }
+  .apply-list strong { color: var(--text); font-weight: 400; }
   .deco-scrub { position: relative; }
   .deco-dial { position: absolute; left: 0; right: 0; top: 80%; bottom: 0; cursor: grab; }
   .deco-dial:active { cursor: grabbing; }
@@ -438,8 +442,12 @@
     <div class="wrap">
       <div class="kicker">06</div>
       <h2>Internships</h2>
-      <p>We offer unpaid internships with a path to employment. If you&rsquo;re interested in creating prediction markets, submit your resume directly below, or email it to <a href="mailto:scott@topdogstudios.com">scott@topdogstudios.com</a>.</p>
-      <p><a class="apply-btn" href="https://www.dropbox.com/request/koy5zieii860i3cph0f2" target="_blank" rel="noopener">Submit your resume &#8599;</a></p>
+      <p>We offer unpaid internships with a path to employment. If you&rsquo;re interested in creating prediction markets, submit the following directly below, or email it to <a href="mailto:scott@topdogstudios.com">scott@topdogstudios.com</a>.</p>
+      <ul class="apply-list">
+        <li><strong>Your resume.</strong></li>
+        <li><strong>Optional, and encouraged: one piece of your work</strong> &mdash; a paper, a model, code, a memo, anything that shows what you can do &mdash; together with a one-page summary written for someone who has never seen it. We read the summary first. Horsepower matters; so does the ability to distill.</li>
+      </ul>
+      <p><a class="apply-btn" href="https://www.dropbox.com/request/koy5zieii860i3cph0f2" target="_blank" rel="noopener">Submit your application &#8599;</a></p>
     </div>
   </section>
 </main>
