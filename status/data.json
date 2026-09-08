@@ -1,0 +1,89 @@
+{
+  "ts": "2026-09-08T04:11:28Z",
+  "release_sha": "53c5f59e8a1b2c3d4e5f6789abcdef0123456789",
+  "sample": true,
+  "poller": {
+    "ok": true,
+    "age_s": 3.9
+  },
+  "products": {
+    "FFDEC": {
+      "engine_state": "DARK",
+      "session": "IDLE",
+      "resting": 0,
+      "collateral": 1200,
+      "locked": 0,
+      "absent_s_today": 2140.4,
+      "presence_pct": 93.8,
+      "arm_valid_until": "2026-09-09T04:11:27Z",
+      "fairs_stale": true,
+      "snapshot_age_s": 12.1,
+      "pid": 22001
+    },
+    "CPIC": {
+      "engine_state": "QUOTING",
+      "session": "BOUND",
+      "resting": 34,
+      "collateral": 8450,
+      "locked": 0,
+      "absent_s_today": 688.9,
+      "presence_pct": 98.0,
+      "arm_valid_until": "2026-09-09T04:11:27Z",
+      "fairs_stale": false,
+      "snapshot_age_s": 4.2,
+      "pid": 22116
+    },
+    "CPIY": {
+      "engine_state": "QUOTING",
+      "session": "BOUND",
+      "resting": 28,
+      "collateral": 6100,
+      "locked": 250,
+      "absent_s_today": 412.0,
+      "presence_pct": 98.8,
+      "arm_valid_until": "2026-09-09T04:11:27Z",
+      "fairs_stale": false,
+      "snapshot_age_s": 5.0,
+      "pid": 22117
+    },
+    "PCEY": {
+      "engine_state": "BOUND",
+      "session": "AUTH_OK",
+      "resting": 12,
+      "collateral": 4300,
+      "locked": 0,
+      "absent_s_today": 980.2,
+      "presence_pct": 97.1,
+      "arm_valid_until": "2026-09-09T01:40:00Z",
+      "fairs_stale": false,
+      "snapshot_age_s": 8.6,
+      "pid": 22118
+    },
+    "UNR": {
+      "engine_state": "HALTED",
+      "session": "BOUND",
+      "resting": 0,
+      "collateral": 2000,
+      "locked": 2000,
+      "absent_s_today": 5400.0,
+      "presence_pct": 84.3,
+      "arm_valid_until": "2026-09-08T12:00:00Z",
+      "fairs_stale": true,
+      "snapshot_age_s": 41.0,
+      "pid": 22119
+    },
+    "CAUNR": {
+      "engine_state": "FLAT",
+      "session": "BOUND",
+      "resting": 0,
+      "collateral": 900,
+      "locked": 0,
+      "absent_s_today": 1600.5,
+      "presence_pct": 95.4,
+      "arm_valid_until": "2026-09-09T04:11:27Z",
+      "fairs_stale": false,
+      "snapshot_age_s": 6.4,
+      "pid": 22120
+    }
+  }
+}

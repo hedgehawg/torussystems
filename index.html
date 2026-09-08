@@ -179,6 +179,12 @@
     font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
     color: rgba(244,241,234,.45);
   }
+  footer a.status-link {
+    color: rgba(244,241,234,.28);
+    letter-spacing: .14em;
+    border: 0;
+  }
+  footer a.status-link:hover { color: rgba(244,241,234,.5); border: 0; }
 
   @media (max-width: 760px) {
     .cards, .grid-2 { grid-template-columns: 1fr; }
@@ -456,7 +462,7 @@
 </main>
 
 <footer>
-  <div class="wrap">&copy; Torus Systems LLC &middot; New York<br>Torus Systems LLC is a wholly owned subsidiary of Top Dog Studios LLC.</div>
+  <div class="wrap">&copy; Torus Systems LLC &middot; New York<br>Torus Systems LLC is a wholly owned subsidiary of Top Dog Studios LLC.<br><a class="status-link" href="status/">Status</a></div>
 </footer>
 
 <script>
