@@ -1,9 +1,8 @@
 /* Status page config — committed hash only, never a plaintext password.
-   Default hash is SHA-256 of the development password `torus-dev`.
-   Replace STATUS_PASSWORD_SHA256 before going live (see STATUS.md). */
+   passwordSha256 is the SHA-256 hex of the unlock password (see STATUS.md). */
 window.STATUS_CONFIG = {
   passwordSha256:
-    "69f2ea6734ef04fcc021c5e8b96e2968b5585be35f55e1802bc7150bf6f28e77",
+    "d1f48fd360295c3b90d28d462024f86709a225cc02c5d4d5470a3e365164df18",
   dataUrl: "data.json",
   refreshMs: 20000
 };

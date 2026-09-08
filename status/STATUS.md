@@ -8,9 +8,9 @@ The marketing homepage stays public. This page is gated by a client-side passwor
 
 The page never stores a plaintext password. It SHA-256 hashes what you type and compares it to `STATUS_PASSWORD_SHA256` in [`config.js`](config.js).
 
-**Development default:** password `torus-dev` (hash already committed). Change this before treating the page as private.
+The live unlock hash is already set in [`config.js`](config.js) (`passwordSha256`). The plaintext password is not in this repo.
 
-Set a real password:
+To rotate the password:
 
 ```bash
 node status/hash-password.js 'your-password-here'
@@ -129,4 +129,4 @@ Computed in the browser from the latest feed. No publisher field required.
 python3 -m http.server 8080
 ```
 
-Open `http://127.0.0.1:8080/status/` and unlock with `torus-dev`.
+Open `http://127.0.0.1:8080/status/` and unlock with the configured password (hash in `config.js`).
