@@ -1,0 +1,16 @@
+{
+  "name": "Torus Systems site",
+  "terminals": [
+    {
+      "name": "static-server",
+      "command": "python3 -m http.server 8080",
+      "description": "Serves the static site. Homepage at http://localhost:8080/ and the ForecastEx ops dashboard at http://localhost:8080/status/ (dev password: torus-dev)."
+    }
+  ],
+  "ports": [
+    {
+      "name": "web",
+      "port": 8080
+    }
+  ]
+}
